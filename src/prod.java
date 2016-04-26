@@ -7,7 +7,7 @@ public class prod extends Thread {
 		this.pilha=pilha;
 		this.producao=producao;
 	}
-	public void abastecer(){
+	public void run(){
 		for(int i=0; i<producao; i++){
 			pilha.set(i);
 		}

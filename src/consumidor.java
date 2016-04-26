@@ -1,6 +1,6 @@
 
 public class consumidor extends Thread {
-	private int id;
+	private int id, i;
 	private buffer pilha;
 	private int consumomax;
 	
@@ -11,9 +11,9 @@ public class consumidor extends Thread {
 	}
 	
 	public void run(){
-		for(int i=0; i<consumomax; i++){
+		for(i=0; i<consumomax; i++){
 			pilha.get(id);
 		}
-		System.out.println("Consumidor " + id + "terminado");
+		System.out.println("Consumidor " + id + " terminado");
 	}
 }

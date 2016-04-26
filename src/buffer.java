@@ -1,12 +1,14 @@
 
 public class buffer {
-	boolean vazia;
+	boolean vazia=true;
 	int valor;
 	
-	public synchronized void set(int valor){
+	public synchronized void set (int valor){
 		while (vazia==false){
-			System.out.println("O produtor esta esperando");
-			wait();
+			try{
+				System.out.println("O produtor esta esperando");
+				wait();
+			}catch (Exception e){}
 		}
 		this.valor=valor;
 		System.out.println("O produtor colocou : " + this.valor);
@@ -14,12 +16,15 @@ public class buffer {
 		notifyAll();
 	}
 	
-	public synchronized int get(int id){
+	public synchronized int get (int id){
 		while(vazia == true){
-			System.out.println("O consumidor " + id + " esta esperando");
+			try{
+				System.out.println("O consumidor " + id + " esta esperando");
+				wait();
+			}catch (Exception e){};
 		}
-		vazia=true;
 		System.out.println("O consumidor " + id + " consumiu " + valor);
+		vazia=true;
 		notifyAll();
 		return valor;
 	}
